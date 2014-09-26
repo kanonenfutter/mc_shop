@@ -1,0 +1,97 @@
+html
+  head
+    title Projekt: Mitfahrgelegenheit
+    //
+      Einbindung von jQuery (Nur mit Internetverbindung?)
+          
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    //
+      Faye laden 
+          
+    script(src='/faye/client.js')
+    //
+      <link rel="stylesheet" type="text/css" href="styles.css">
+          
+    //
+      Latest compiled and minified CSS 
+          
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    //
+      Optional theme 
+          
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css')
+    script(src='../javascripts/details.js', type='text/javascript')
+  body
+    .navbar.navbar-inverse
+      .container
+        ul.nav.navbar-nav
+          li
+            a(href='/') Home
+          li
+            a(href='/add.html') Fahrt hinzufügen
+          li
+            a(href='/profile.html') Meine Fahrten
+          li
+            a(href='/login.html') Login
+          li
+            a(href='/search.html') Suche
+          li
+            a#active_user
+    .container
+      .page-header
+        h2 Fahrtdetails
+      //
+        Details zur Fahrt
+              
+      table#tabelle.table.table-bordered.table-striped(border='1')
+        tr
+          th Fahrer
+          th Abfahrtsort
+          th Ankunftsort
+          th Datum
+          th Abfahrtszeit
+          th Freie Plätze
+          th Fahrt_ID
+        tr
+          td#name= name
+          td= start
+          td= destination
+          td= date
+          td= time
+          td#seats= seats
+          td#fahrt_id= _id
+      form#form(name='form', action='/fahrten/:id', method='POST')
+        button#submit.btn.btn-default(name='submit') Nimm mich mit!
+      h2 Mitfahrer
+      table#responses.table.table-bordered.table-striped(border='1')
+        tr
+          th Username
+    script(type='text/javascript').
+      // Definition der 'action'
+      $('#form').submit(function(event) {
+      //Verhindert das Standard-Verhalten von submit
+      event.preventDefault();
+      // Formulardaten werden als JSON Objekt gespeichert
+      var data = {
+      name: getCookie("username"),
+      status: "Unbeantwortet",
+      fahrt_id: document.getElementById('fahrt_id').innerHTML,
+      };
+      alert(JSON.stringify(data));
+      // post auf Ressource '/fahrten'
+      var ajaxPost = $.ajax({
+      type: 'POST',
+      url: window.location.pathname + '/anfragen',
+      data: JSON.stringify(data),
+      contentType: 'application/json'
+      });
+      // Popup. Serverseitiges res.writeHead(200) erforderlich
+      ajaxPost.done(function() {
+      alert('Die Anfrage wurde hinzugefügt.');
+      $( '#form' ).remove();
+      });
+      // Popup mit Fehlermeldung wenn Promise fehlgeschlagen
+      ajaxPost.fail(function(e) {
+      alert('Die Anfrage konnte nicht hinzugefuegt werden. (' + JSON.stringify(e) + ')');
+      });
+      });

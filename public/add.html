@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Projekt: Marquee_shops</title>
+        <!--Einbindung von jQuery (Nur mit Internetverbindung?)-->
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <!-- Faye laden -->
+        <script src='/faye/client.js'></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <script src="javascripts/add.js" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/top.html">Top Items</a></li>
+                    <li class="active"><a href="/add.html">Item Anbieten</a></li>
+                    <li><a href="/profile.html">Meine Angebote</a></li>
+                    <li><a href="/login.html">Login</a></li> 
+                    <li><a href="/search.html">Suche</a></li>
+                    <li><a id="active_user"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container col-md-5 col-md-offset-1">
+                <div class="page-header">
+                    <h2>Angebot hinzufügen</h2>
+                </div>
+                <!-- Formular fuer das Hinzufügen neuer Fahrten -->
+                <form class="form-horizontal" name='form' id='form' action='/offers' method='POST'>
+                    <fieldset>         
+                    <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="username">Username</label>
+                      <div class="controls">
+                        <input id="username" name="username" type="text" placeholder="" class="input-xlarge">
+                        
+                      </div>
+                    </div>
+    
+                    <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="itemname">Itemname</label>
+                      <div class="controls">
+                        <input id="itemname" name="itemname" type="text" placeholder="" class="input-xlarge">
+                        
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="quantity">Menge</label>
+                      <div class="controls">
+                        <input id="quantity" type="text" class="input-xlarge" maxlength="5" onFocus="startCalc();" onBlur="stopCalc();">
+                      </div>
+                      <a class="btn btn-default" id="addStack">+1 Stack</a>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="price">Preis (in coins)</label>
+                      <div class="controls">
+                        <input id="price" type="text" class="input-xlarge" maxlength="5" onFocus="startCalc();" onBlur="stopCalc();">
+                        
+                      </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="unitprice">Einzelpreis</label>
+                        <div class="controls">
+                        <div id="unitprice"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="availability">Verfügbarkeit</label>
+                      <div class="controls">
+    <!--                    <input id="seats" name="seats" type="text" placeholder="" class="input-xlarge"></-->
+                        <select id="availability" name="availability">
+                            <option value="Verfügbar">Verfügbar</option>
+                            <option value="Nicht verfügbar">Nicht verfügbar</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <!-- Button -->
+                    <div class="control-group">
+                      <label class="control-label" for="submit"></label>
+                      <div class="controls">
+                        <button id="submit" name="submit" class="btn btn-default">Absenden</button>
+                      </div>
+                    </div>
+                    
+                    </fieldset>
+                </form>
+            </div>
+            <div class="container col-md-5">
+                <div class="page-header">
+                    <h2>blabla</h2>
+                </div>
+                <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet</div>
+            </div>
+            <div class="col-md-offset-1">
+            </div>
+        </div>
+        <script type="text/javascript">
+            function startCalc(){
+                interval = setInterval("calc()",1);
+            }
+            function calc(){
+                one = document.getElementById("price").value;
+                two = document.getElementById("quantity").value;
+                sum = (one * 1) / (two * 1);
+                document.getElementById("unitprice").innerHTML = sum.toFixed(2);
+            }
+            function stopCalc(){
+                clearInterval(interval);
+            }
+            // Definition der 'action'
+            $('#form').submit(function(event) {
+                //Verhindert das Standard-Verhalten von submit
+                event.preventDefault();
+                // Formulardaten werden als JSON Objekt gespeichert
+                var data = {
+                    name: $('#username').val(),
+                    itemname:   $('#itemname').val(),
+                    quantity:   parseInt($('#quantity').val()),
+                    price: parseInt($('#price').val()),
+                    unitprice: parseFloat($('#unitprice').text()),
+                    availability: $('#availability').val()
+                };
+                // post auf Ressource '/fahrten'
+                var ajaxPost = $.ajax({
+                    type: 'POST',
+                    url: '/offers',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json'
+                });
+                // Popup. Serverseitiges res.writeHead(200) erforderlich
+                ajaxPost.done(function() {
+                    alert('Das Angebot wurde hinzugefügt.');
+                    // Formular wird zurueckgesetzt
+                    $('#form')[0].reset();
+                    location.href = "/";
+                });
+                // Popup mit Fehlermeldung wenn Promise fehlgeschlagen
+                ajaxPost.fail(function(e) {
+                    alert('Das Angebot konnte nicht hinzugefuegt werden. (' + JSON.stringify(e) + ')');
+                });
+            });
+        </script>
+    </body>
+</html>
