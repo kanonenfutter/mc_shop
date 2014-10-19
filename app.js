@@ -138,6 +138,7 @@ app.delete('/fahrten/:id', function(req, res) {
 
 //post-response auf die Ressource /fahrten
 app.post('/offers', function(req, res, next) {
+    if (req
     offersCollection.insert(req.body, function(error, offersCollection){
         if (error) next(error);
         else {

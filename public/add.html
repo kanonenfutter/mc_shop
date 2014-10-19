@@ -30,87 +30,89 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="container col-md-5 col-md-offset-1">
-                <div class="page-header">
-                    <h2>Angebot hinzufügen</h2>
-                </div>
-                <!-- Formular fuer das Hinzufügen neuer Fahrten -->
-                <form class="form-horizontal" name='form' id='form' action='/offers' method='POST'>
-                    <fieldset>         
-                    <!-- Text input-->
-                    <div class="control-group">
-                      <label class="control-label" for="username">Username</label>
-                      <div class="controls">
-                        <input id="username" name="username" type="text" placeholder="" class="input-xlarge">
-                        
-                      </div>
+        <div class="container">
+            <div class="row">
+                <div class="container col-md-5 col-md-offset-1">
+                    <div class="page-header">
+                        <h2>Angebot hinzufügen</h2>
                     </div>
-    
-                    <!-- Text input-->
-                    <div class="control-group">
-                      <label class="control-label" for="itemname">Itemname</label>
-                      <div id="bloodhound">
-                        <input id="itemname" class="typeahead" type="text" placeholder="">
-                      </div>
-                    </div>
-                    
-                    <!-- Text input-->
-                    <div class="control-group">
-                      <label class="control-label" for="quantity">Menge</label>
-                      <div class="controls">
-                        <input id="quantity" type="text" class="input-xlarge" maxlength="5" onFocus="startCalc();" onBlur="stopCalc();">
-                      </div>
-                      <a class="btn btn-default" id="addStack">+1 Stack</a>
-                    </div>
-                    
-                    <!-- Text input-->
-                    <div class="control-group">
-                      <label class="control-label" for="price">Preis (in coins)</label>
-                      <div class="controls">
-                        <input id="price" type="text" class="input-xlarge" maxlength="5" onFocus="startCalc();" onBlur="stopCalc();">
-                        
-                      </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="unitprice">Einzelpreis</label>
-                        <div class="controls">
-                        <div id="unitprice"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Text input-->
-                    <div class="control-group">
-                      <label class="control-label" for="availability">Verfügbarkeit</label>
-                      <div class="controls">
-    <!--                    <input id="seats" name="seats" type="text" placeholder="" class="input-xlarge"></-->
-                        <select id="availability" name="availability">
-                            <option value="Verfügbar">Verfügbar</option>
-                            <option value="Nicht verfügbar">Nicht verfügbar</option>
-                        </select>
-                      </div>
-                    </div>
-                    
-                    <!-- Button -->
-                    <div class="control-group">
-                      <label class="control-label" for="submit"></label>
-                      <div class="controls">
-                        <button id="submit" name="submit" class="btn btn-default">Absenden</button>
-                      </div>
-                    </div>
-                    
-                    </fieldset>
-                </form>
-            </div>
-            <div class="container col-md-5">
-                <div class="page-header">
-                    <h2>blabla</h2>
-                </div>
-                <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+                    <!-- Formular fuer das Hinzufügen neuer Fahrten -->
+                    <form class="form-horizontal" name='form' id='form' action='/offers' method='POST'>
+                        <fieldset>         
+                        <!-- Text input-->
+                        <div class="control-group">
+                          <label class="control-label" for="username">Username</label>
+                          <div class="controls">
+                            <input id="username" name="username" type="text" placeholder="" class="input-xlarge">
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet</div>
-            </div>
-            <div class="col-md-offset-1">
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                          <label class="control-label" for="itemname">Itemname</label>
+                          <div id="bloodhound">
+                            <input id="itemname" class="typeahead" type="text" placeholder="">
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                          <label class="control-label" for="quantity">Menge</label>
+                          <div class="controls">
+                            <input id="quantity" type="text" class="input-xlarge" maxlength="5" onFocus="startCalc();" onBlur="stopCalc();">
+                          </div>
+                          <a class="btn btn-default" id="addStack">+1 Stack</a>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                          <label class="control-label" for="price">Preis (in coins)</label>
+                          <div class="controls">
+                            <input id="price" type="text" class="input-xlarge" maxlength="5" onFocus="startCalc();" onBlur="stopCalc();">
+
+                          </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="unitprice">Einzelpreis</label>
+                            <div class="controls">
+                            <div id="unitprice"></div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                          <label class="control-label" for="availability">Verfügbarkeit</label>
+                          <div class="controls">
+        <!--                    <input id="seats" name="seats" type="text" placeholder="" class="input-xlarge"></-->
+                            <select id="availability" name="availability">
+                                <option value="Verfügbar">Verfügbar</option>
+                                <option value="Nicht verfügbar">Nicht verfügbar</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="control-group">
+                          <label class="control-label" for="submit"></label>
+                          <div class="controls">
+                            <button id="submit" name="submit" class="btn btn-default">Absenden</button>
+                          </div>
+                        </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="container col-md-5">
+                    <div class="page-header">
+                        <h2>blabla</h2>
+                    </div>
+                    <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
+    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet</div>
+                </div>
+                <div class="container col-md-offset-1">
+                </div>
             </div>
         </div>
         <script type="text/javascript">
