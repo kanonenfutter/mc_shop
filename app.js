@@ -148,6 +148,7 @@ app.delete('/fahrten/:id', function(req, res) {
 
 //post-response auf die Ressource /fahrten
 app.post('/offers', function(req, res, next) {
+<<<<<<< HEAD
 /*    if (req.body.unitprice == null){
         console.log('KÄSEKUCHEN');
         next(error);
@@ -166,6 +167,8 @@ app.post('/offers', function(req, res, next) {
         }
     });
     
+=======
+>>>>>>> origin/master
     offersCollection.insert(req.body, function(error, offersCollection){
         console.log(req.body.unitprice);
         if (error) next(error);
