@@ -1,8 +1,8 @@
 var http = require('http');
 var path = require('path');
 var express = require('express');
-var bodyParser = require('body-parser')
-var morgan  = require('morgan')
+var bodyParser = require('body-parser');
+var morgan  = require('morgan');
 var mongoDB = require('mongoskin');
 var faye = require('faye');
 var jade = require('jade');
@@ -10,9 +10,14 @@ var BSON = require('mongodb').BSONPure;
 var app = express();
 var server = http.createServer(app);
 
+var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
+var cookieParser = require('cookie-parser');
+
 // Verbindung zur mongoDB
 
-var db =mongoDB.db('mongodb://localhost/mydb?auto_reconnect=true',{safe: true});
+var db = mongoDB.db('mongodb://localhost/mydb?auto_reconnect=true', {safe: true});
 
 // Collection "user_item" binden
 
@@ -34,7 +39,7 @@ bayeux.attach(server);
 var pubSubClient = bayeux.getClient();
 
 //Verzeichnisdefinierung fuer den Zugriff von Aussen
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -45,10 +50,16 @@ app.use(bodyParser.urlencoded());
 
 //http logger
 //app.use(express.logger('dev'));
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 
 //Middleware, benötigt für cookies
-//app.use(express.cookieParser());
+app.use(cookieParser());
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 //Errorhandling
 app.use(function(error, req, res, next) {
@@ -59,11 +70,11 @@ app.use(function(error, req, res, next) {
 
 
 //get-response auf die Ressource /fahrten. Ausgabe aller Fahrten.
-app.get('/offers', function (req, res, next) {
-    offersCollection.findItems(function(error, result){
+app.get('/offers', function(req, res, next) {
+    offersCollection.findItems(function(error, result) {
         if (error)
             next(error);
-        else{
+        else {
             res.writeHead(200, {'Content-Type': 'application/json'});
             res.end(JSON.stringify(result));
         };
@@ -93,7 +104,6 @@ app.get('/fahrten/:id', function (req, res, next) {
         if (error)
             next(error);
         else {
-            
             console.log('Result:');
             console.log(result);
             console.log(result[0]);
@@ -138,8 +148,26 @@ app.delete('/fahrten/:id', function(req, res) {
 
 //post-response auf die Ressource /fahrten
 app.post('/offers', function(req, res, next) {
-    if (req
+/*    if (req.body.unitprice == null){
+        console.log('KÄSEKUCHEN');
+        next(error);
+        next(new Error('failed to find user'));
+    };*/
+
+    validation(req.body, function(error){
+        console.log(req.body.unitprice);
+        if (req.body.unitprice == null){
+            var error = 'ERROR';
+        };
+        if (error) next(error);
+        else {
+            //res.write('Daten wurden gespeichert');
+            console.log('');
+        }
+    });
+    
     offersCollection.insert(req.body, function(error, offersCollection){
+        console.log(req.body.unitprice);
         if (error) next(error);
         else {
             //res.write('Daten wurden gespeichert');
@@ -196,6 +224,14 @@ app.post('/fahrten/:id/anfragen', function(req, res, next) {
 		next(error);
 	});
 });
+
+app.post('/login',
+  passport.authenticate('local'),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/users/' + req.user.username);
+  });
     
 
 //Webserver wird auf Port 3000 erstellt.

@@ -6,6 +6,9 @@
   "dependencies": {
     "express": "*",
     "mongoskin": "*",
-    "faye": "*"
+    "faye": "*",
+    "passport" : "*",
+    "passport-local" : "*",
+    "bcrypt-nodejs" : "latest"
   }
 }
