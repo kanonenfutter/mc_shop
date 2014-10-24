@@ -96,7 +96,7 @@ app.get('/search', function (req, res, next) {
 });
 
 //get auf die Ressource /fahrten/:id. Detailansicht einer Fahrt
-app.get('/fahrten/:id', function (req, res, next) {
+app.get('/offers/:id', function (req, res, next) {
     console.log("GET: " + JSON.stringify(req.url));
     console.log("param: _ID:" + req.params.id);
     var obj_id = BSON.ObjectID.createFromHexString(req.params.id);
@@ -116,7 +116,7 @@ app.get('/fahrten/:id', function (req, res, next) {
 });
 
 //get auf die Ressource /fahrten/:id/anfragen.
-app.get('/fahrten/:id/anfragen', function (req, res, next) {
+/*app.get('/offers/:id/anfragen', function (req, res, next) {
     console.log("GET: " + JSON.stringify(req.url));
     console.log("param: fahrt_id:" + req.params.id);
     mitfahrerCollection.find({fahrt_id: req.params.id}).toArray(function(error, result) {
@@ -130,10 +130,10 @@ app.get('/fahrten/:id/anfragen', function (req, res, next) {
             res.end(JSON.stringify(result));
         }
     });
-});
+});*/
 
 //delete auf die Ressource /fahrten/:id
-app.delete('/fahrten/:id', function(req, res) {
+app.delete('/offers/:id', function(req, res) {
     console.log("DEL: " + JSON.stringify(req.url));
     console.log("param: _ID:" + req.params.id);
     var obj_id = BSON.ObjectID.createFromHexString(req.params.id);
@@ -148,27 +148,6 @@ app.delete('/fahrten/:id', function(req, res) {
 
 //post-response auf die Ressource /fahrten
 app.post('/offers', function(req, res, next) {
-<<<<<<< HEAD
-/*    if (req.body.unitprice == null){
-        console.log('KÄSEKUCHEN');
-        next(error);
-        next(new Error('failed to find user'));
-    };*/
-
-    validation(req.body, function(error){
-        console.log(req.body.unitprice);
-        if (req.body.unitprice == null){
-            var error = 'ERROR';
-        };
-        if (error) next(error);
-        else {
-            //res.write('Daten wurden gespeichert');
-            console.log('');
-        }
-    });
-    
-=======
->>>>>>> origin/master
     offersCollection.insert(req.body, function(error, offersCollection){
         console.log(req.body.unitprice);
         if (error) next(error);
