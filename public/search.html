@@ -13,7 +13,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="custom.css">
-        <script src="javascripts/add.js" type="text/javascript"></script>
+        <script src="javascripts/search.js" type="text/javascript"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -31,15 +31,37 @@
             </div>
         </div>
         <div class="container">
-            <div class="page-header">
-                <h2>Itemsuche</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="page-header">
+                        <h2>Nach Item suchen...</h2>
+                    </div>
+                    <form id='searchform1' method='GET'>
+                        <label class="control-label">Itemname</label>
+
+                        <div id="bloodhound">
+                            <input id='itemq' class="typeahead" type="text" placeholder="">
+                            <a href="#" class="searchitem btn btn-default">suchen</a>
+                            <p>Auf Groß- und Kleinschreibung achten!</p>
+                        </div>
+                    </form>
+                
+                </div>
+                <div class="col-md-6">
+                    <div class="page-header">
+                        <h2>Nach Verkäufer suchen...</h2>
+                    </div>
+                    <form id='searchform2' method='GET'>
+                        <label class="control-label">Username</label>
+
+                        <div>
+                            <input id='sellerq' class="typeahead" type="text" placeholder="">
+                            <a href="#" class="searchseller btn btn-default">suchen</a>
+                            <p>Auf Groß- und Kleinschreibung achten!</p>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form id='searchform' method='GET'>
-                <label class="control-label">Itemname</label>
-                <input class="input-xlarge" name='search' id='input_search' type='text'></input>
-                <a href="#" class="linksearch btn btn-default">suchen</a>
-                <p>Suche ist Case-sensitive</p>
-            </form>
         </div>
         <div class="container">
             <div class="page-header">
@@ -58,6 +80,12 @@
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="footer">
+          <div class="container">
+            <p class="text-muted">Gestrickt von kanonenfutter - 2014 -
+            <a href="http://vanakh.ch">vanakh.ch</a></p>
+          </div>
         </div>
 
     </body>                                   

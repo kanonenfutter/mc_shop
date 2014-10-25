@@ -70,7 +70,7 @@ app.use(function(error, req, res, next) {
 
 
 //get-response auf die Ressource /fahrten. Ausgabe aller Fahrten.
-app.get('/offers', function(req, res, next) {
+/*app.get('/offers', function(req, res, next) {
     offersCollection.findItems(function(error, result) {
         if (error)
             next(error);
@@ -79,11 +79,23 @@ app.get('/offers', function(req, res, next) {
             res.end(JSON.stringify(result));
         };
     });
+});*/
+
+app.get('/offers', function(req, res, next) {
+    offersCollection.find().sort( [['_id', -1]] ).toArray(function(error, result) {
+        if (error)
+            next(error);
+        else {
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(result));
+        };
+    });
 });
+    
 
 //get auf die Ressource /search. Eingabe: Suchanfrage. Ausgabe: Suchergebnisse
 app.get('/search', function (req, res, next) {
-    offersCollection.find(req.query).toArray(function(error, result) {
+    offersCollection.find(req.query).sort( [['_id', -1]] ).toArray(function(error, result) {
         if (error)
             next(error);
         else {

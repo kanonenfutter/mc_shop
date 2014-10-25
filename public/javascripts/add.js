@@ -48,8 +48,6 @@ var items = ['Stein',
 'Lava',
 'Sand',
 'Kies',
-'Golderz',
-'Eisenerz',
 'Steinkohle',
 'Eichenholz',
 'Fichtenholz',
@@ -95,8 +93,6 @@ var items = ['Stein',
 'Eichenholztreppe',
 'Truhe',
 'Redstone?',
-'Diamanterz',
-'Diamantblock',
 'Werkbank',
 'Weizen',
 'Ofen',
@@ -193,6 +189,17 @@ var items = ['Stein',
 'Roter_Sandstein',
 'Rote_Sandsteintreppe'];
     
+var valuables = ['Diamant',
+                 'Eisenbarren',
+                 'Goldbarren',
+                 'Golderz',
+                 'Eisenerz',
+                 'Diamanterz',
+                 'Diamantblock',
+                 'Eisenblock',
+                 'Goldblock'];
+    
+    
     
     
 // bloodhound
@@ -205,9 +212,18 @@ var items = new Bloodhound({
   // `items` is an array of state names defined in "The Basics"
   local: $.map(items, function(item) { return { value: item }; })
 });
+    
+// constructs the suggestion engine
+var valuables = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  // `items` is an array of state names defined in "The Basics"
+  local: $.map(valuables, function(valuable) { return { value: valuable }; })
+});
 
 // kicks off the loading/processing of `local` and `prefetch`
 items.initialize();
+valuables.initialize();
 
 $('#bloodhound .typeahead').typeahead({
   hint: true,
@@ -220,6 +236,13 @@ $('#bloodhound .typeahead').typeahead({
   // `ttAdapter` wraps the suggestion engine in an adapter that
   // is compatible with the typeahead jQuery plugin
   source: items.ttAdapter()
+},
+{
+  name: 'valuables',
+  displayKey: 'value',
+  // `ttAdapter` wraps the suggestion engine in an adapter that
+  // is compatible with the typeahead jQuery plugin
+  source: valuables.ttAdapter()
 });
 
 });

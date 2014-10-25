@@ -91,3 +91,23 @@ input:focus {
   max-height: 150px;
   overflow-y: auto;
 }
+
+/* footer */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+    padding-top: 10px;
+  background-color: #d6d6d6;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
