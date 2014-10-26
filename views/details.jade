@@ -1,6 +1,6 @@
 html
   head
-    title Projekt: Mitfahrgelegenheit
+    title Projekt:
     //
       Einbindung von jQuery (Nur mit Internetverbindung?)
           
@@ -39,26 +39,26 @@ html
             a#active_user
     .container
       .page-header
-        h2 Fahrtdetails
+        h2 Details zum Angebot
       //
         Details zur Fahrt
               
       table#tabelle.table.table-bordered.table-striped(border='1')
         tr
-          th Fahrer
-          th Abfahrtsort
-          th Ankunftsort
-          th Datum
-          th Abfahrtszeit
-          th Freie Plätze
-          th Fahrt_ID
+          th Verkäufer
+          th Itemname
+          th Menge
+          th Preis
+          th Einzelpreis
+          th Verfügbarkeit
+          th ID
         tr
           td#name= name
-          td= start
-          td= destination
-          td= date
-          td= time
-          td#seats= seats
+          td= itemname
+          td= quantity
+          td= price
+          td= unitprice
+          td#seats= availibility
           td#fahrt_id= _id
       form#form(name='form', action='/fahrten/:id', method='POST')
         button#submit.btn.btn-default(name='submit') Nimm mich mit!
