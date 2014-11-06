@@ -4,6 +4,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan  = require('morgan');
 var mongoDB = require('mongoskin');
+
+
+
 var faye = require('faye');
 var jade = require('jade');
 var BSON = require('mongodb').BSONPure;
@@ -11,19 +14,22 @@ var app = express();
 var server = http.createServer(app);
 
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var session = require('express-session');
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 
 // Verbindung zur mongoDB
-
 var db = mongoDB.db('mongodb://localhost/mydb?auto_reconnect=true', {safe: true});
 
 // Collection "user_item" binden
-
 db.bind('offers');
-
 var offersCollection = db.offers;
+
+// Collection "users" binden
+db.bind('mm_users');
+var usersCollection = db.mm_users;
 
 
 // Faye
@@ -68,18 +74,23 @@ app.use(function(error, req, res, next) {
     
 });
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+ 
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
-//get-response auf die Ressource /fahrten. Ausgabe aller Fahrten.
-/*app.get('/offers', function(req, res, next) {
-    offersCollection.findItems(function(error, result) {
-        if (error)
-            next(error);
-        else {
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(result));
-        };
-    });
-});*/
+passport.use(new LocalStrategy(function(username, password, done) {
+  process.nextTick(function() {
+    // Auth Check Logic
+  });
+}));
+
+
+
+//REST Methoden
 
 app.get('/offers', function(req, res, next) {
     offersCollection.find().sort( [['_id', -1]] ).toArray(function(error, result) {
@@ -219,13 +230,32 @@ app.post('/fahrten/:id/anfragen', function(req, res, next) {
 	});
 });
 
-app.post('/login',
+app.get('/login', function(req, res) {
+  res.sendfile('views/login.html');
+});
+
+/*app.post('/login',
   passport.authenticate('local'),
   function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     res.redirect('/users/' + req.user.username);
-  });
+  });*/
+
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/loginSuccess',
+    failureRedirect: '/loginFailure'
+  })
+);
+ 
+app.get('/loginFailure', function(req, res, next) {
+  res.send('Failed to authenticate');
+});
+ 
+app.get('/loginSuccess', function(req, res, next) {
+  res.send('Successfully authenticated');
+});
     
 
 //Webserver wird auf Port 3000 erstellt.

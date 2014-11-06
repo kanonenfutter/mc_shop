@@ -45,7 +45,7 @@ function search() {
 
 // Zeile/Dokument zur Tabelle hinzufuegen 
 function addTableRow(offer) {
-    $('#tabelle').append('<tr><td>' + offer.name + '</td><td>' + offer.itemname + '</td><td>' + offer.quantity + '</td><td>' + offer.price + '</td><td>' + offer.unitprice + '</td><td>' + offer.availability + '</td><td>'+ '<a href="#" class="linkdeleteoffer" rel="'+ offer._id +'">delete</a>' + '<a href="/fahrten/'+ offer._id + '"> details</a></td></tr>');
+    $('#tabelle').append('<tr><td>' + offer.name + '</td><td>' + offer.itemname + '</td><td>' + offer.quantity + '</td><td>' + offer.price + '</td><td>' + offer.unitprice + '</td><td>' + offer.availability + '</td><td>'+ '<a href="#" class="linkdeleteoffer" rel="'+ offer._id +'">delete</a>' + '<a href="/offers/'+ offer._id + '"> details</a></td></tr>');
     };
 
 // Offer entfernen
