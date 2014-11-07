@@ -262,7 +262,7 @@ function getCookie(cname){
 function checkUser(username){
     if (username.localeCompare("invalid_user")==0) {
         alert('Ups. Log dich doch erst bitte ein.')
-        window.location.href = "/login.html";
+        window.location.href = "/login";
     }
     else {
         document.getElementById("username").value = username;

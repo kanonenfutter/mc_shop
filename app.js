@@ -92,6 +92,8 @@ passport.use(new LocalStrategy(function(username, password, done) {
 
 //REST Methoden
 
+
+
 app.get('/offers', function(req, res, next) {
     offersCollection.find().sort( [['_id', -1]] ).toArray(function(error, result) {
         if (error)
@@ -102,7 +104,14 @@ app.get('/offers', function(req, res, next) {
         };
     });
 });
-    
+
+app.get('/add', function(req, res) {
+    res.sendfile('views/add.html');
+});
+
+app.get('/profile', function(req, res) {
+    res.sendfile('views/profile.html');
+});
 
 //get auf die Ressource /search. Eingabe: Suchanfrage. Ausgabe: Suchergebnisse
 app.get('/search', function (req, res, next) {
