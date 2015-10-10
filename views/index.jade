@@ -1,0 +1,68 @@
+doctype html
+html(lang='de')
+  head
+    title Minecraft Marquee Shops
+    // Einbindung von jQuery (Nur mit Internetverbindung?)
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    // Faye laden
+    script(src='/faye/client.js')
+    // <link rel="stylesheet" type="text/css" href="styles.css">
+    // Latest compiled and minified CSS
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    // Optional theme
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='custom.css')
+    script(src='javascripts/scripts.js', type='text/javascript')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(charset='UTF-8')
+    meta(name='google-site-verification', content='b1IUgvV5cPcTlPx9fpZji9Cc5QFDL7ZtJmeDcXekV00')
+  body
+    .navbar.navbar-inverse
+      .container
+        ul.nav.navbar-nav
+          li.active
+            a(href='/') Home
+          li
+            a(href='/top') Top Items
+          li
+            a(href='/add') Item Anbieten
+          li
+            a(href='/profile') Meine Angebote
+          li
+            a(href='/login') Login
+          li
+            a(href='/search') Suche
+          li
+            a#active_user
+    .container
+      .page-header
+        h2 MC Marktplatz
+      p
+        | Stelle hier deine Items zum Verkauf ein oder
+        | schaue was deine Mitspieler anbieten.
+        | In dieser Übersicht findest du die aktuellsten Angebote.
+      p
+        | Hinweis: Benutzung auf eigene Gefahr.
+        | Version: alpha 0.1.4-17072015
+      if user
+        p= user
+       
+    .container
+      .page-header
+        h2 Angebotene Items
+      // Tabellenkopf, neue fahrten werden hier hinzugefuegt
+      .table-responsive
+        table#tabelle.table.table-bordered.table-striped
+          tr
+            th Verkäufer
+            th Itemname
+            th Menge
+            th Preis
+            th Stückpreis
+            th (Verfügbarkeit)
+            th Aktionen
+    .footer
+      .container
+        p.text-muted
+          | Gestrickt von kanonenfutter - 2014 -
+          a(href='http://vanakh.ch') vanakh.ch

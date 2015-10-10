@@ -4,11 +4,14 @@
   "private": true,
   "main": "app.js",
   "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "emailjs": "^0.3.16",
     "express": "*",
-    "mongoskin": "*",
     "faye": "*",
-    "passport" : "*",
-    "passport-local" : "*",
-    "bcrypt-nodejs" : "latest"
+    "mongoskin": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passwordless": "^1.1.0",
+    "passwordless-mongostore-bcrypt-node": "^0.1.1"
   }
 }

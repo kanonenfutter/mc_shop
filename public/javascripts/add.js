@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //Bei Seitenaufruf: Cookie "username" wird ausgelesen
     document.getElementById('active_user').innerHTML = getCookie("username");
-    checkUser(getCookie("username"));
+    //checkUser(getCookie("username"));
     $('#form').on('click', '#addStack',  addStack);
     
     var substringMatcher = function(strs) {

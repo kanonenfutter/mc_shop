@@ -5,6 +5,7 @@
     var subscription = client.subscribe('/offers', function(message) {
         addTableRow(message);
     });
+    var state = {"canBeAnything": true};
 
 $(document).ready(function() {
     document.getElementById('active_user').innerHTML = getCookie("username"); 
@@ -13,7 +14,8 @@ $(document).ready(function() {
     $('#tabelle').on('click', 'td a.linkdeleteoffer',  deleteOffer);
 
     $('#searchform').on('click', 'a.search',  startsearch);
-
+    history.pushState(state, "New Title", "/");
+    expect(history.state).toEqual(state);
 });
 
 // Tabelle aufbauen

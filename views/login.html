@@ -35,13 +35,15 @@
             <div class="page-header">
                 <h2>Login</h2>
             </div>
-            <p class="lead">Log dich bitte mit deinem Username ein:</p>
-            <form id='loginform' action='/fahrten' method='GET'>
-                <label class="control-label">Usename</label>
-                <input class="input-xlarge" name='search' id='input_username' type='text'></input>
-                <a href="/" class="linkloginuser btn btn-default" id="login">Login</a>
+            <p>Log dich bitte mit deiner Emailadresse ein und befolge die Anweisungen auf der nächsten Seite:</p>
+            <br>
+            <form action="/sendtoken" method="POST">
+                Email:
+                <br><input name="user" type="text">
+                <br><input type="submit" class="btn" value="Login">
             </form>
         </div>
+
         <div class="footer">
           <div class="container">
             <p class="text-muted">Gestrickt von kanonenfutter - 2014 -

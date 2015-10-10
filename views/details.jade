@@ -28,9 +28,11 @@ html
           li
             a(href='/') Home
           li
-            a(href='/add') Fahrt hinzufügen
+            a(href='/top') Top Items
           li
-            a(href='/profile') Meine Fahrten
+            a(href='/add') Item Anbieten
+          li
+            a(href='/profile') Meine Angebote
           li
             a(href='/login') Login
           li
@@ -41,7 +43,7 @@ html
       .page-header
         h2 Details zum Angebot
       //
-        Details zur Fahrt
+        Details zum Angebot
               
       table#tabelle.table.table-bordered.table-striped(border='1')
         tr
@@ -58,11 +60,11 @@ html
           td= quantity
           td= price
           td= unitprice
-          td#seats= availibility
+          td= availability
           td#fahrt_id= _id
-      form#form(name='form', action='/fahrten/:id', method='POST')
-        button#submit.btn.btn-default(name='submit') Nimm mich mit!
-      h2 Mitfahrer
+      form#form(name='form', action='/offers/:id', method='POST')
+        button#submit.btn.btn-default(name='submit') Ich habe Interesse!
+      h2 Interessenten
       table#responses.table.table-bordered.table-striped(border='1')
         tr
           th Username
@@ -78,7 +80,7 @@ html
       fahrt_id: document.getElementById('fahrt_id').innerHTML,
       };
       alert(JSON.stringify(data));
-      // post auf Ressource '/fahrten'
+      // post auf Ressource '/offers'
       var ajaxPost = $.ajax({
       type: 'POST',
       url: window.location.pathname + '/anfragen',

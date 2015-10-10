@@ -11,7 +11,7 @@ $(document).ready(function() {
     //Bei Seitenaufruf: Cookie "username" wird ausgelesen
     document.getElementById('active_user').innerHTML = getCookie("username");
     populateTable();
-    checkSeats();
+    //checkSeats();
     checkUser(getCookie("username"));
 
 

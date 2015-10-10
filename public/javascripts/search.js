@@ -269,7 +269,7 @@ function search(query) {
 //    var query = 'itemname=' + document.getElementById('searchquery').value;
     //GET und Suchanfrage auf "/search"
     $.ajax({
-        url: '/search',
+        url: '/results',
         type: 'GET',
         data: query,
         contentType: 'application/json'
@@ -280,7 +280,7 @@ function search(query) {
                 addTableRow(offer);
             });
         } else {
-            alert('Suche verlief erfolglos');
+            alert('Die Suche verlief erfolglos.');
             $('#searchform1').reset();
             $('#searchform2').reset();
         }
