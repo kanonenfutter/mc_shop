@@ -12,6 +12,10 @@
     "passport": "*",
     "passport-local": "*",
     "passwordless": "^1.1.0",
-    "passwordless-mongostore-bcrypt-node": "^0.1.1"
+    "passwordless-mongostore-bcrypt-node": "^0.1.1",
+	"cookie-parser": "*",
+	"jade": "*",
+	"express-session": "*"
+	
   }
 }

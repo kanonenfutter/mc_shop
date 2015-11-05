@@ -1,10 +1,11 @@
 var express = require('express');
+var BSON = require('mongodb').BSONPure;
 var router = express.Router();
 
 var passwordless = require('passwordless');
 var mongoDB = require('mongoskin');
+var ObjectID = require('mongoskin').ObjectID;
 
-var BSON = require('mongodb').BSONPure;
 
 // Verbindung zur mongoDB
 var db = mongoDB.db('mongodb://localhost/mydb?auto_reconnect=true', {safe: true});
@@ -67,7 +68,9 @@ router.get('/search', function (req, res, next) {
 router.get('/offers/:id', function (req, res, next) {
     console.log("GET: " + JSON.stringify(req.url));
     console.log("param: _ID:" + req.params.id);
-    var obj_id = BSON.ObjectID.createFromHexString(req.params.id);
+    //var obj_id = BSON.ObjectID.createFromHexString(req.params.id);
+	var obj_id = ObjectID.createFromHexString(req.params.id)
+	
     offersCollection.find({_id: obj_id}).toArray(function(error, result) {
         if (error)
             next(error);
