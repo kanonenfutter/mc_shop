@@ -46,7 +46,9 @@ router.get('/profile', function(req, res) {
     res.sendfile('views/profile.html');
 });
 
-//get auf die Ressource /search. Eingabe: Suchanfrage. Ausgabe: Suchergebnisse
+
+
+//GET auf die Ressource /results. Eingabe: Suchanfrage. Ausgabe: Suchergebnisse
 router.get('/results', function (req, res, next) {
     offersCollection.find(req.query).sort( [['_id', -1]] ).toArray(function(error, result) {
         if (error)
@@ -60,11 +62,12 @@ router.get('/results', function (req, res, next) {
     });
 });
 
+// Item/Verkäufer Suche
 router.get('/search', function (req, res, next) {
     res.sendfile('views/search.html');
 });
 
-//get auf die Ressource /fahrten/:id. Detailansicht einer Fahrt
+//get auf die Ressource /offers/:id. Detailansicht eines Angebots
 router.get('/offers/:id', function (req, res, next) {
     console.log("GET: " + JSON.stringify(req.url));
     console.log("param: _ID:" + req.params.id);
@@ -86,7 +89,7 @@ router.get('/offers/:id', function (req, res, next) {
     });
 });
 
-//delete auf die Ressource /fahrten/:id
+//DELETE auf die Ressource /offers/:id
 router.delete('/offers/:id', function(req, res) {
     console.log("DEL: " + JSON.stringify(req.url));
     console.log("param: _ID:" + req.params.id);
@@ -100,7 +103,7 @@ router.delete('/offers/:id', function(req, res) {
     });
 });
 
-//post-response auf die Ressource /fahrten
+//post-response auf die Ressource /offers
 router.post('/offers', function(req, res, next) {
     offersCollection.insert(req.body, function(error, offersCollection){
         console.log(req.body.unitprice);
@@ -126,8 +129,9 @@ router.post('/offers', function(req, res, next) {
 	});
 });
 
-//post-response auf die Ressource /fahrten/:id/anfragen
-router.post('/fahrten/:id/anfragen', function(req, res, next) {
+//post-response auf die Ressource /offers/:id/anfragen
+//TODO: Ändern...
+router.post('/offers/:id/anfragen', function(req, res, next) {
     console.log("POST: " + JSON.stringify(req.url));
     console.log("param: _ID:" + req.params.id);
     console.log(req.body);

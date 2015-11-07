@@ -1,22 +1,12 @@
 $(document).ready(function() {
     //var temp = getCookie("username");
     document.getElementById('active_user').innerHTML = getCookie("username"); 
-    // Delete User link click
-    //$('#tabelle').on('click', 'td a.linkdeletefahrt',  deleteFahrt);
     // Login User link click
     $('#loginform').on('click', '.linkloginuser',  loginUser);
     
-    //$('#searchform').on('click', 'a.search',  startsearch);
 
 });
 
-/*function loginUser(username){
-    event.preventDefault();
-    
-    user= document.getElementById('input_username').value;
-    document.getElementById('active_user').innerHTML=user;
-}*/
-    
 
 function setCookie(cname,cvalue,exdays){
     var d = new Date();
@@ -40,5 +30,4 @@ function loginUser(){
     var user = document.getElementById('input_username').value;
     alert("Willkommen " + user);
     setCookie("username", user, 1);
-    //location.reload();
 };
