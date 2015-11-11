@@ -17,11 +17,12 @@ var cookieParser = require('cookie-parser');
 var routes = require('./routes/index');
 
 var smtpServer  = email.server.connect({
-   user:    "vannak.s.ch@gmail.com", 
-   password: "YASXYaqwsa!!", 
+   user:    "isyourwifesingle@gmail.com", 
+   password: "1q2wQAWSaysx", 
    host:    "smtp.gmail.com", 
    ssl:     true
 });
+
 
 
 
@@ -43,8 +44,8 @@ passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
         var host = 'marktplatz.vanakh.ch';
         smtpServer.send({
-            text:    'Hi!\nGreife hier auf dein Account zu: http://'+ host + '?token=' + tokenToSend + '&uid='+ encodeURIComponent(uidToSend), 
-            from:    'ich <vannak.s.ch@gmail.com>', 
+            text:    'Hi!\nGreife hier auf dein Account zu: \nhttp://'+ host + '?token=' + tokenToSend + '&uid='+ encodeURIComponent(uidToSend), 
+            from:    'MC Marktplatz <isyourwifesingle@gmail.com>', 
             to:      recipient,
             subject: 'Token for ' + host
         }, function(err, message) { 
