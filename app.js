@@ -17,7 +17,7 @@ var cookieParser = require('cookie-parser');
 var routes = require('./routes/index');
 
 var smtpServer  = email.server.connect({
-   user:    "isyourwifesingle@gmail.com", 
+   user:    "isyourwifesingle@gmail.com",
    password: "1q2wQAWSaysx", 
    host:    "smtp.gmail.com", 
    ssl:     true
@@ -42,7 +42,7 @@ passwordless.init(new MongoStore(pathToMongoDb,  { allowTokenReuse: true }));
 // Set up a delivery service
 passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
-        var host = 'marktplatz.vanakh.ch';
+        var host = 'localhost:3000';
         smtpServer.send({
             text:    'Hi!\nGreife hier auf dein Account zu: \nhttp://'+ host + '?token=' + tokenToSend + '&uid='+ encodeURIComponent(uidToSend), 
             from:    'MC Marktplatz <isyourwifesingle@gmail.com>', 

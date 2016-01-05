@@ -45,7 +45,12 @@ html(lang='de')
         | Hinweis: Benutzung auf eigene Gefahr.
         | Version: alpha 0.1.4-05112015
       if user
-        p= user
+        p 
+          | Du bist eingeloggt als:
+          p= user
+      else
+        p
+          | Nicht eingeloggt!
        
     .container
       .page-header

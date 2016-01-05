@@ -104,9 +104,11 @@ router.delete('/offers/:id', function(req, res) {
 });
 
 //post-response auf die Ressource /offers
+//Notiz: req.body wird zweifach in die Datenbank geschrieben
 router.post('/offers', function(req, res, next) {
+    req.body.createdAt = new Date();
     offersCollection.insert(req.body, function(error, offersCollection){
-        console.log(req.body.unitprice);
+        console.log("WITH DATE" + JSON.stringify(req.body));
         if (error) next(error);
         else {
             //res.write('Daten wurden gespeichert');
@@ -114,6 +116,7 @@ router.post('/offers', function(req, res, next) {
             console.log(req.body._id);
         }
     });
+    
     // Dokument an Topic '/offers' publishen
 	var publication = pubSubClient.publish('/offers', req.body);
 	// Promise handler wenn Publish erfolgreich

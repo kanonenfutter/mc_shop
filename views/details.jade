@@ -50,10 +50,11 @@ html
           th Verkäufer
           th Itemname
           th Menge
-          th Preis
+          th Preis in Coins
           th Einzelpreis
           th Verfügbarkeit
           th ID
+          th Erstellt am
         tr
           td#name= name
           td= itemname
@@ -62,6 +63,7 @@ html
           td= unitprice
           td= availability
           td#fahrt_id= _id
+          td= createdAt
       form#form(name='form', action='/offers/:id', method='POST')
         button#submit.btn.btn-default(name='submit') Ich habe Interesse!
       h2 Interessenten
